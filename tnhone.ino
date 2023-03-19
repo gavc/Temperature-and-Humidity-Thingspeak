@@ -1,3 +1,10 @@
+/*
+
+Write to ThingSpeak Temp and Humidity
+Thanks to: https://github.com/mathworks/thingspeak-arduino/tree/master/examples/ESP8266/program%20board%20directly/WriteMultipleFields
+
+*/
+
 #include <Wire.h>
 #include "Adafruit_SHT31.h"
 #include <WiFiManager.h>

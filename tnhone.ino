@@ -4,7 +4,6 @@ Write to ThingSpeak Temp and Humidity
 Thanks to: https://github.com/mathworks/thingspeak-arduino/tree/master/examples/ESP8266/program%20board%20directly/WriteMultipleFields
 
 */
-
 #include <Wire.h>
 #include "Adafruit_SHT31.h"
 #include <WiFiManager.h>
@@ -17,8 +16,8 @@ float temperature = 0;
 float humidity = 0;
 String myStatus = "";
 
-unsigned long myChannelNumber = SECRET_CHANNEL;
-const char * myWriteAPIKey = "SECRET_API";
+unsigned long myChannelNumber = SECRET_CHANNELID;
+const char * myWriteAPIKey = "SECRET_API_KEY";
 
 unsigned long previousMillis = 0;
 const long interval = 60000;
@@ -28,7 +27,7 @@ WiFiClient client;
 void setup() {
   Serial.begin(115200);
   while (!Serial) {
-    delay(10); // Wait for serial port to connect
+    delay(20); // Wait for serial port to connect
   }
 
   Serial.println();
@@ -67,21 +66,16 @@ void loop() {
     float humidity = sht31.readHumidity();
 
     // set the fields with the values
-  ThingSpeak.setField(1, temperature);
-  ThingSpeak.setField(2, humidity);
+    ThingSpeak.setField(1, temperature);
+    ThingSpeak.setField(2, humidity);
 
-  // write to the ThingSpeak channel
-  int x = ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
-  if (x == 200) {
-    Serial.println("Channel update successful.");
-  }
-  else {
-    Serial.println("Problem updating channel. HTTP error code " + String(x));
-  }
-
-    if (isnan(temperature) || isnan(humidity)) {
-      Serial.println("Failed to read from DHT sensor!");
-      return;
+    // write to the ThingSpeak channel
+    int x = ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
+    if (x == 200) {
+      Serial.println("Channel update successful.");
+    }
+    else {
+      Serial.println("Problem updating channel. HTTP error code " + String(x));
     }
   }
 }

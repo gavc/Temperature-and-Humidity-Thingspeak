@@ -1,0 +1,13 @@
+ // figure out the status message
+  if(number1 > number2){
+    myStatus = String("field1 is greater than field2"); 
+  }
+  else if(number1 < number2){
+    myStatus = String("field1 is less than field2");
+  }
+  else{
+    myStatus = String("field1 equals field2");
+  }
+  
+  // set the status
+  ThingSpeak.setStatus(myStatus);

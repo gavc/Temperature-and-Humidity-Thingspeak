@@ -1,2 +1,6 @@
 # TnH_One
-Wemos temperature and humidity, with ThingSpeak
+Lolin Wemos D1 Mini v1
+
+Temperature and humidity, published to ThingSpeak
+
+https://thingspeak.com/channels/297975
